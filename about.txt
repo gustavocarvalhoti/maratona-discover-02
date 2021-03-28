@@ -1,0 +1,9 @@
+# Install
+npm init -y             <- Init the project
+npm i express
+npm i nodemon -D        <- Fast reload
+npm i ejs               <- EJS - For inject JS
+
+
+# Technologies
+EJS - Embedded JavaScript templating - https://ejs.co/
