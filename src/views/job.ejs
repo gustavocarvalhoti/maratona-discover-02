@@ -23,7 +23,7 @@
 <%- include('parts/page-header', { title: 'Adicionar novo job' }) %>
 <div class="container flex animate-up delay-2">
     <main>
-        <form id="form-job">
+        <form id="form-job" action="/job" method="POST">
             <fieldset>
                 <legend>Dados do Job</legend>
                 <div class="separator light"></div>
@@ -33,8 +33,9 @@
                 </div>
                 <div class="input-group">
                     <div class="input-wrapper">
-                        <label for="daily-hours">Quantas horas <br/>
-                            por dia vai dedicar ao job?</label>
+                        <label for="daily-hours">
+                            Quantas horas <br/> por dia vai dedicar ao job?
+                        </label>
                         <input
                                 type="number"
                                 step="0.1"
@@ -43,12 +44,14 @@
                         />
                     </div>
                     <div class="input-wrapper">
-                        <label for="total-hours">Estimativa de <br/>
-                            horas para esse Job?</label>
+                        <label for="total-hours">
+                            Estimativa de <br/>horas para esse Job?
+                        </label>
                         <input
                                 type="number"
                                 id="total-hours"
-                                name="total-hours"/>
+                                name="total-hours"
+                        />
                     </div>
                 </div>
             </fieldset>
@@ -65,11 +68,11 @@
                     class="button green"
                     form="form-job"
                     type="submit"
-                    title="Salvar Dados">Salvar
+                    title="Salvar Dados"
+            >
+                Salvar
             </button>
-            <a
-                    href="/"
-                    class="button gray">
+            <a href="/" class="button gray">
                 <img
                         src="/images/trash-24.svg"
                         alt="Cancelar cadastro"
@@ -81,4 +84,3 @@
 <!-- end container -->
 </body>
 </html>
- 

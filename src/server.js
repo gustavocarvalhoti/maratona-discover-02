@@ -10,6 +10,9 @@ server.set('view engine', 'ejs');
 // Create the routes automatic
 server.use(express.static("public"));
 
+// Habilitar req.body
+server.use(express.urlencoded({extended: true}));
+
 server.use(routes);
 
 server.listen(port, () => console.log(`Running on the port ${port}`));
