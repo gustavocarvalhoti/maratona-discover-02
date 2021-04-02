@@ -1,56 +1,17 @@
 const express = require('express');
-const routes = express();
-const views = `${__dirname}/views/`;
+const routes = express.Router();
+const ProfileController = require('./controllers/ProfileController')
+const JobController = require('./controllers/JobController')
+const DashboardController = require('./controllers/DashboardController')
 
-const profile = {
-    name: 'Gustavo',
-    avatar: 'https://github.com/gustavocarvalhoti.png',
-    "monthly-budget": 3000,
-    "days-per-week": 5,
-    "hours-per-day": 5,
-    "vacation-per-year": 4,
-}
+routes.get('/', DashboardController.index)
+routes.get('/job', JobController.create)
+routes.post('/job', JobController.save)
+routes.get('/job/:id', JobController.show)
+routes.post('/job/:id', JobController.update)
+routes.post('/job/delete/:id', JobController.delete)
+routes.get('/profile', ProfileController.index)
+routes.post('/profile', ProfileController.update)
 
-const jobs = [
-    {
-        id: 1,
-        name: "Pizzaria do Gus",
-        "daily-hours": 2,
-        "total-hours": 40,
-        created_at: Date.now()
-    },
-    {
-        id: 2,
-        name: "One",
-        "daily-hours": 3,
-        "total-hours": 47,
-        created_at: Date.now()
-    }
-];
-
-routes.get('/', (req, res) => {
-    return res.render(views + 'index', {jobs});
-});
-routes.get('/job', (req, res) => {
-    return res.render(views + 'job');
-});
-routes.get('/job-edit', (req, res) => {
-    return res.render(views + 'job-edit');
-});
-routes.get('/profile', (req, res) => {
-    return res.render(views + 'profile', {profile});
-});
-routes.post('/job', (req, res) => {
-    const lastId = jobs[jobs.length - 1].id || 1;
-    jobs.push({
-        id: lastId + 1,
-        name: req.body.name,
-        "daily-hours": req.body["daily-hours"],
-        "total-hours": req.body["total-hours"],
-        created_at: Date.now()
-    });
-    console.log(jobs);
-    return res.redirect('/');
-});
-
+ 
 module.exports = routes;

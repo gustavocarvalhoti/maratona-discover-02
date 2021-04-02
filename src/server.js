@@ -1,18 +1,21 @@
-const express = require('express');
-const server = express();
-const routes = require('./routes');
-const port = 3001;
+const express = require("express")
+const server = express()
+const routes = require("./routes")
+const path = require("path")
 
-/* <%= EJS %> For use this tags */
-server.set('view engine', 'ejs');
+// usando template engine
+server.set('view engine',  'ejs')
 
-// Statics files on the folder public
-// Create the routes automatic
-server.use(express.static("public"));
+// Mudar a localização da pasta views
+server.set('views', path.join(__dirname, 'views'))
 
-// Habilitar req.body
-server.use(express.urlencoded({extended: true}));
+//habilitar arquivos statics
+server.use(express.static("public"))
 
-server.use(routes);
+// usar o req.body
+server.use(express.urlencoded({ extended: true }))
 
-server.listen(port, () => console.log(`Running on the port ${port}`));
+// routes
+server.use(routes)
+
+server.listen(3000, () => console.log('rodando'))
